@@ -1,4 +1,7 @@
 package com.nicolas.todoapp.model
 
-class Priority {
+enum class Priority {
+    HIGH,
+    MEDIUM,
+    LOW
 }
