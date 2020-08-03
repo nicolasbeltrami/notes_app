@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Mis Notas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_no_data">Tus notas están vacias</string>
+    <string name="tv_add_title">Título</string>
+    <string name="tv_description_add">Descripción</string>
+
+    <string-array name="priorities">
+        <item>Prioridad Alta</item>
+        <item>Prioridad Media</item>
+        <item>Prioridad Baja</item>
+    </string-array>
+</resources>
