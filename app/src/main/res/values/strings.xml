@@ -5,6 +5,14 @@
     <string name="tv_no_data">Tus notas están vacias</string>
     <string name="tv_add_title">Título</string>
     <string name="tv_description_add">Descripción</string>
+    <string name="search_text">Buscar</string>
+    <string name="high_priority">Alta prioridad</string>
+    <string name="medium_priority">Media prioridad</string>
+    <string name="low_priority">Baja prioridad</string>
+    <string name="delete_all">Eliminar todo</string>
+    <string name="add">Agregar</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Borrar</string>
 
     <string-array name="priorities">
         <item>Prioridad Alta</item>
