@@ -1,6 +1,7 @@
-package com.nicolas.todoapp.model
+package com.nicolas.todoapp.data
 
 import androidx.room.TypeConverter
+import com.nicolas.todoapp.data.model.Priority
 
 class Converter {
 

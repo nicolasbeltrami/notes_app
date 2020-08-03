@@ -1,7 +1,8 @@
-package com.nicolas.todoapp.model
+package com.nicolas.todoapp.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.nicolas.todoapp.data.model.Priority
 
 @Entity(tableName = "note_table")
 data class Note(

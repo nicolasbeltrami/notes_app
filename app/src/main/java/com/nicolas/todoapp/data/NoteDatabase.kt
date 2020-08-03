@@ -1,10 +1,11 @@
-package com.nicolas.todoapp.model
+package com.nicolas.todoapp.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.nicolas.todoapp.data.model.Note
 
 /* Para implementar el conversor, se debe utilizar el anotador @TypeConverters */
 
