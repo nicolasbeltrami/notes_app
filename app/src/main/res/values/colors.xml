@@ -7,4 +7,5 @@
     <color name="priorityMedium">#fdd835</color>
     <color name="priorityLow">#7cb342</color>
     <color name="colorWhite">#FFF</color>
+    <color name="colorGray">#eeeeee</color>
 </resources>
