@@ -2,6 +2,7 @@ package com.nicolas.todoapp.fragments.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nicolas.todoapp.data.model.Note
 import com.nicolas.todoapp.databinding.ItemNoteBinding
@@ -68,7 +69,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.NoteViewHolder>() {
     }
 
     fun setData(noteData: List<Note>){
+        val noteDiffUtil = NoteDiffUtil(dataList, noteData)
+        val noteDiffResult = DiffUtil.calculateDiff(noteDiffUtil)
         this.dataList = noteData
-        notifyDataSetChanged()
+        noteDiffResult.dispatchUpdatesTo(this)
     }
 }
