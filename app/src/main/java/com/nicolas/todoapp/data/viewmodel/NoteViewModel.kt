@@ -18,10 +18,14 @@ class NoteViewModel(application: Application) : AndroidViewModel(application){
     private val repository: NoteRepository
 
     val getAllNotes: LiveData<List<Note>>
+    val sortByHighPriority: LiveData<List<Note>>
+    val sortByLowPriority: LiveData<List<Note>>
 
     init {
         repository = NoteRepository(noteDao)
         getAllNotes = repository.getAllData
+        sortByHighPriority = repository.sortByHighPriority
+        sortByLowPriority = repository.sortByLowPriority
     }
 
     fun insertNote(note: Note) {
@@ -46,6 +50,10 @@ class NoteViewModel(application: Application) : AndroidViewModel(application){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAll()
         }
+    }
+
+    fun searchNotes(searchQuery: String) : LiveData<List<Note>> {
+        return repository.searchNotes(searchQuery)
     }
 
 }

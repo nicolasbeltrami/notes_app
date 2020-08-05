@@ -3,6 +3,7 @@ package com.nicolas.todoapp.fragments.list
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -20,7 +21,7 @@ import com.nicolas.todoapp.fragments.list.adapter.ListAdapter
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val noteViewModel: NoteViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by viewModels()
@@ -97,7 +98,7 @@ class ListFragment : Fragment() {
     }
 
     private fun restoreDeletedData(view: View, deletedItem: Note, position: Int){
-        val snackBar = Snackbar.make(requireView(), "Nota eliminada: '${deletedItem.title}'", Snackbar.LENGTH_LONG)
+        val snackBar = Snackbar.make(view, "Nota eliminada: '${deletedItem.title}'", Snackbar.LENGTH_LONG)
         snackBar.setAction("Deshacer"){
             noteViewModel.insertNote(deletedItem)
             adapter.notifyItemChanged(position)
@@ -107,11 +108,22 @@ class ListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
+
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menuDeleteAll) {
-            confirmRemoval()
+        when (item.itemId) {
+            R.id.menuDeleteAll ->confirmRemoval()
+            R.id.menuPriorityHigh -> noteViewModel.sortByHighPriority.observe(this, Observer {
+                adapter.setData(it)
+            })
+            R.id.menuPriorityLow -> noteViewModel.sortByLowPriority.observe(this, Observer {
+                adapter.setData(it)
+            })
         }
         return super.onOptionsItemSelected(item)
     }
@@ -133,5 +145,30 @@ class ListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchNoteOnDatabase(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query != null) {
+            searchNoteOnDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchNoteOnDatabase(query: String) {
+        var searchQuery: String = query
+        searchQuery = "%$searchQuery%"
+
+        noteViewModel.searchNotes(searchQuery).observe(this, Observer { list ->
+            list?.let {
+                adapter.setData(it)
+            }
+        })
     }
 }

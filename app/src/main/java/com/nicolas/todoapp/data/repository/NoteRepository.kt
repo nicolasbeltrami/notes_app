@@ -7,6 +7,8 @@ import com.nicolas.todoapp.data.model.Note
 class NoteRepository(private val noteDao: NoteDao) {
 
     val getAllData: LiveData<List<Note>> = noteDao.getAllData()
+    val sortByHighPriority: LiveData<List<Note>> = noteDao.sortByHighPriority()
+    val sortByLowPriority: LiveData<List<Note>> = noteDao.sortByLowPriority()
 
     suspend fun insertNote(note: Note){
         noteDao.insertNote(note)
@@ -22,6 +24,10 @@ class NoteRepository(private val noteDao: NoteDao) {
 
     suspend fun deleteAll() {
         noteDao.deleteAll()
+    }
+
+    fun searchNotes(searchQuery: String): LiveData<List<Note>> {
+        return noteDao.searchNotes(searchQuery)
     }
 
 }
