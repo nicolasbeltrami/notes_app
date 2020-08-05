@@ -66,7 +66,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.itemAnimator = SlideInUpAnimator().apply {
-            addDuration = 200
+            addDuration = 0
         }
 
         //Swipe to delete
@@ -91,14 +91,14 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
                 noteViewModel.deleteNote(deletedItem)
                 adapter.notifyItemRemoved(viewHolder.adapterPosition)
                 // Undo deleted note
-                restoreDeletedData(viewHolder.itemView, deletedItem, viewHolder.adapterPosition)
+                restoreDeletedData(viewHolder.itemView, deletedItem)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private fun restoreDeletedData(view: View, deletedItem: Note, position: Int){
+    private fun restoreDeletedData(view: View, deletedItem: Note){
         val snackBar = Snackbar.make(view, "Nota eliminada: '${deletedItem.title}'", Snackbar.LENGTH_LONG)
         snackBar.setAction("Deshacer"){
             noteViewModel.insertNote(deletedItem)

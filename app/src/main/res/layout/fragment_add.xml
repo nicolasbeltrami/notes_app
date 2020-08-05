@@ -31,8 +31,7 @@
         android:layout_marginTop="8dp"
         android:entries="@array/priorities"
         android:paddingStart="19dp"
-        android:paddingEnd="24dp"
-        android:background="@android:color/transparent"/>
+        android:paddingEnd="24dp" />
 
     <EditText
         android:id="@+id/etAddDescription"
