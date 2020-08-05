@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.nicolas.todoapp.R
 import com.nicolas.todoapp.data.model.Note
 import com.nicolas.todoapp.data.viewmodel.NoteViewModel
+import com.nicolas.todoapp.databinding.FragmentUpdateBinding
 import com.nicolas.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_update.*
 import kotlinx.android.synthetic.main.fragment_update.view.*
@@ -22,21 +23,25 @@ class UpdateFragment : Fragment() {
     private val sharedViewModel: SharedViewModel by viewModels()
     private val noteViewModel: NoteViewModel by viewModels()
 
+    private var _binding: FragmentUpdateBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_update, container, false)
+        _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        binding.args = args
         // Set menu
         setHasOptionsMenu(true)
 
-        view.etUpdateTitle.setText(args.currentItem.title)
+        /*view.etUpdateTitle.setText(args.currentItem.title)
         view.etUpdateDescription.setText(args.currentItem.description)
-        view.spinnerPriorityUpdate.setSelection(sharedViewModel.parsePriorityToInt(args.currentItem.priority))
-        view.spinnerPriorityUpdate.onItemSelectedListener = sharedViewModel.listener
+        view.spinnerPriorityUpdate.setSelection(sharedViewModel.parsePriorityToInt(args.currentItem.priority))*/
+        binding.spinnerPriorityUpdate.onItemSelectedListener = sharedViewModel.listener
 
-        return view
+        return binding.root
 
     }
 
@@ -85,5 +90,10 @@ class UpdateFragment : Fragment() {
         builder.setTitle("Borrar ${args.currentItem.title}")
         builder.setMessage("Seguro que quieres borrar '${args.currentItem.title}'?")
         builder.create().show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

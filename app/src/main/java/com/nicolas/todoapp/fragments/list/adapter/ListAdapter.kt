@@ -1,20 +1,14 @@
-package com.nicolas.todoapp.fragments.list
+package com.nicolas.todoapp.fragments.list.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.nicolas.todoapp.R
 import com.nicolas.todoapp.data.model.Note
-import com.nicolas.todoapp.data.model.Priority
 import com.nicolas.todoapp.databinding.ItemNoteBinding
-import kotlinx.android.synthetic.main.item_note.view.*
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.NoteViewHolder>() {
 
-    private var dataList = emptyList<Note>()
+    var dataList = emptyList<Note>()
 
     class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -27,13 +21,17 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.NoteViewHolder>() {
             fun from(parent: ViewGroup) : NoteViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemNoteBinding.inflate(layoutInflater, parent, false)
-                return NoteViewHolder(binding)
+                return NoteViewHolder(
+                    binding
+                )
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        return NoteViewHolder.from(parent)
+        return NoteViewHolder.from(
+            parent
+        )
     }
 
     override fun getItemCount() = dataList.size
