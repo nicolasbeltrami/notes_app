@@ -14,11 +14,14 @@ import com.nicolas.todoapp.data.model.Priority
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
 
-    val emptyData: MutableLiveData<Boolean> = MutableLiveData(true)
+    /** List Fragment **/
+    val emptyData: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun checkIfDatabaseEmpty(note: List<Note>) {
         emptyData.value = note.isEmpty()
     }
+
+    /** Add and Update Fragments **/
 
     val listener: AdapterView.OnItemSelectedListener = object : AdapterView.OnItemSelectedListener{
         override fun onNothingSelected(p0: AdapterView<*>?) {}
