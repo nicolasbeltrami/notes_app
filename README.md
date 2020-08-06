@@ -9,3 +9,4 @@ Applicacion de practica, desarrollada con fines de aprendizaje.
 - MVVM
 - Navigation
 - Live Data
+-Coroutines
