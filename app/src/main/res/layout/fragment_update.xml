@@ -64,7 +64,8 @@
             android:paddingEnd="24dp"
             android:hint="@string/tv_description_add"
             android:fontFamily="@font/roboto"
-            android:text="@{args.currentItem.description}"/>
+            android:text="@{args.currentItem.description}"
+            android:importantForAutofill="no" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

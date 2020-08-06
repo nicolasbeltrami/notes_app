@@ -9,9 +9,7 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/menuSortBy"
-            android:title="Ordenar por:">
+        <item android:title="@string/order_by">
                 <menu>
                     <item android:id="@+id/menuPriorityHigh"
                         android:title="@string/high_priority"/>

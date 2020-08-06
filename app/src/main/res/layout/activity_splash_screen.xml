@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashScreenActivity"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    tools:ignore="Overdraw">
 
     <ImageView
         android:id="@+id/misNotasLogo"
@@ -15,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/app_logo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

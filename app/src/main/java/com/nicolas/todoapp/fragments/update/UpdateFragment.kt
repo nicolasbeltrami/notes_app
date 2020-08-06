@@ -14,7 +14,6 @@ import com.nicolas.todoapp.data.viewmodel.NoteViewModel
 import com.nicolas.todoapp.databinding.FragmentUpdateBinding
 import com.nicolas.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_update.*
-import kotlinx.android.synthetic.main.fragment_update.view.*
 
 
 class UpdateFragment : Fragment() {
@@ -94,6 +93,6 @@ class UpdateFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding =null
     }
 }

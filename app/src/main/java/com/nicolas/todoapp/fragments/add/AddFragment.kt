@@ -1,7 +1,6 @@
 package com.nicolas.todoapp.fragments.add
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -9,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.nicolas.todoapp.R
 import com.nicolas.todoapp.data.model.Note
-import com.nicolas.todoapp.data.model.Priority
 import com.nicolas.todoapp.data.viewmodel.NoteViewModel
 import com.nicolas.todoapp.fragments.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
